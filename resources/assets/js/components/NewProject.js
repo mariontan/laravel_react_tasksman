@@ -21,6 +21,7 @@ class NewProject extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
+    console.log(event.target.value)
   }
 
   handleCreateNewProject (event) {
@@ -32,12 +33,13 @@ class NewProject extends Component {
       name: this.state.name,
       description: this.state.description
     }
-
+    //console.log(project)
     axios
       .post('/api/projects', project)
       .then(response => {
         // redirect to the homepage
         history.push('/')
+        //console.log(project)
       })
       .catch(error => {
         this.setState({

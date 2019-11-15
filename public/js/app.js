@@ -59986,6 +59986,7 @@ var NewProject = function (_Component) {
     key: 'handleFieldChange',
     value: function handleFieldChange(event) {
       this.setState(_defineProperty({}, event.target.name, event.target.value));
+      console.log(event.target.value);
     }
   }, {
     key: 'handleCreateNewProject',
@@ -60000,11 +60001,11 @@ var NewProject = function (_Component) {
       var project = {
         name: this.state.name,
         description: this.state.description
-      };
-
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/projects', project).then(function (response) {
+        //console.log(project)
+      };__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/projects', project).then(function (response) {
         // redirect to the homepage
         history.push('/');
+        //console.log(project)
       }).catch(function (error) {
         _this2.setState({
           errors: error.response.data.errors
@@ -60163,8 +60164,8 @@ var ProjectsList = function (_Component) {
     key: 'render',
     value: function render() {
       var projects = this.state.projects;
+      //console.log(this.state)
 
-      console.log(this.state);
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
         'div',
         { className: 'container py-4' },
@@ -60611,11 +60612,14 @@ var NewItem = function (_React$Component) {
 		_this.state = {
 			itemname: '',
 			description: '',
-			quantity: ''
+			quantity: '',
+			error: []
 		};
 
 		_this.handleFieldChange = _this.handleFieldChange.bind(_this);
 		_this.handleCreateNewItem = _this.handleCreateNewItem.bind(_this);
+		_this.hasErrorFor = _this.hasErrorFor.bind(_this);
+		_this.renderErrorFor = _this.renderErrorFor.bind(_this);
 		return _this;
 	}
 
@@ -60623,11 +60627,12 @@ var NewItem = function (_React$Component) {
 		key: 'handleFieldChange',
 		value: function handleFieldChange(event) {
 			this.setState(_defineProperty({}, event.target.name, event.target.value));
-			console.log(event.target.name);
+			//console.log(event.target.name)
+			//console.log(event.target.value)
 		}
 	}, {
 		key: 'handleCreateNewItem',
-		value: function handleCreateNewItem() {
+		value: function handleCreateNewItem(event) {
 			event.preventDefault();
 
 			var history = this.props.history;
@@ -60639,9 +60644,31 @@ var NewItem = function (_React$Component) {
 				quantity: this.state.quantity
 			};
 			console.log(item);
-			// axios.post('/api/shoppingList',item).then(respose=>{
-			// 	history.push('/')
-			// });
+			__WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/shoppingList', item).then(function (response) {
+				history.push('/');
+			}).catch(function (error) {
+				console.log(error);
+			});
+		}
+	}, {
+		key: 'hasErrorFor',
+		value: function hasErrorFor(field) {
+			return !!this.state.errors[field];
+		}
+	}, {
+		key: 'renderErrorFor',
+		value: function renderErrorFor(field) {
+			if (this.hasErrorFor(field)) {
+				return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'span',
+					{ className: 'invalid-feedback' },
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'strong',
+						null,
+						this.state.errors[field][0]
+					)
+				);
+			}
 		}
 	}, {
 		key: 'render',
@@ -60697,6 +60724,21 @@ var NewItem = function (_React$Component) {
 											name: 'description',
 											rows: '10',
 											value: this.state.description,
+											onChange: this.handleFieldChange
+										})
+									),
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'div',
+										{ className: 'form-group' },
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'label',
+											{ htmlFor: 'quantity' },
+											'quantity'
+										),
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', {
+											id: 'quantity',
+											name: 'quantity',
+											value: this.state.quantity,
 											onChange: this.handleFieldChange
 										})
 									),

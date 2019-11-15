@@ -8,19 +8,24 @@ class NewItem extends React.Component{
 		this.state = {
 			itemname:'',
 			description:'',
-			quantity:''			
+			quantity:''	,
+			error:[]		
 		}
 
 		this.handleFieldChange=this.handleFieldChange.bind(this)
 		this.handleCreateNewItem=this.handleCreateNewItem.bind(this)
+		this.hasErrorFor = this.hasErrorFor.bind(this)
+    	this.renderErrorFor = this.renderErrorFor.bind(this)
 	}
+	
 	handleFieldChange (event) {
 	    this.setState({
 	      [event.target.name]: event.target.value
 	    })
 	    //console.log(event.target.name)
+	    //console.log(event.target.value)
 	}
-	handleCreateNewItem(){
+	handleCreateNewItem(event){
 		event.preventDefault();
 
 		const {history}=this.props;
@@ -31,11 +36,31 @@ class NewItem extends React.Component{
 			quantity:this.state.quantity
 		}
 		console.log(item);
-		// axios.post('/api/shoppingList',item).then(respose=>{
-		// 	history.push('/')
-		// });
+		axios.post('/api/shoppingList', item).then(response=>{
+			history.push('/')
+		}).catch(error => {
+	        console.log(error)
+		})
 
 	}
+
+
+
+  	hasErrorFor (field) {
+    	return !!this.state.errors[field]
+  	}
+
+  	renderErrorFor (field) {
+	    if (this.hasErrorFor(field)) {
+	      return (
+	        <span className='invalid-feedback'>
+	          <strong>{this.state.errors[field][0]}</strong>
+	        </span>
+	      )
+	    }
+	}
+
+
 	render(){
 		return(
 	      <div className='container py-4'>
@@ -69,6 +94,17 @@ class NewItem extends React.Component{
 	                      onChange={this.handleFieldChange}
 	                    />
 	                  </div>
+
+	                  <div className='form-group'>
+	                    <label htmlFor='quantity'>quantity</label>
+	                    <textarea
+	                      id='quantity'
+	                      name='quantity'
+	                      value={this.state.quantity}
+	                      onChange={this.handleFieldChange}
+	                    />
+	                  </div>
+
 
 	                  <button className='btn btn-primary'>Create</button>
 					</form>
