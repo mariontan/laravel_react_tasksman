@@ -7,17 +7,18 @@ import ProjectsList from './ProjectsList'
 import SingleProject from './SingleProject'
 import ShopList from './ShopList'
  
+
 class App extends Component {
   render () {
     return (
       <BrowserRouter>
         <div>
           <Header />
-          <Switch>
-            <Route exact path='/' component={ProjectsList} />
+          
+            <Route path='/' exact component={ProjectsList} />
+            <Route path='/shopList' exact component={ShopList}/>
             <Route path='/create' component={NewProject} />
-            <Route exact path='/shopList' component={ShopList}/>
-          </Switch>
+            <Route path='/:id' component={SingleProject} />
         </div>
       </BrowserRouter>
     )
@@ -26,7 +27,8 @@ class App extends Component {
 
 ReactDOM.render(<App />, document.getElementById('app'))
 /*
-
+<Switch>
 
 <Route exact path='/:id' component={SingleProject} />
+</Switch>
 */
