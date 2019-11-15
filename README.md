@@ -54,3 +54,5 @@ and visit [http://localhost:8000](http://localhost:8000) to see the application 
 
 * [Laravel](https://laravel.com) - The PHP Framework For Web Artisans
 * [React](https://reactjs.org) - A JavaScript library for building user interfaces
+
+https://blog.pusher.com/react-laravel-application/

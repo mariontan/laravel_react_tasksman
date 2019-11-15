@@ -5,7 +5,8 @@ import Header from './Header'
 import NewProject from './NewProject'
 import ProjectsList from './ProjectsList'
 import SingleProject from './SingleProject'
-
+import ShopList from './ShopList'
+ 
 class App extends Component {
   render () {
     return (
@@ -15,7 +16,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={ProjectsList} />
             <Route path='/create' component={NewProject} />
-            <Route path='/:id' component={SingleProject} />
+            <Route exact path='/shopList' component={ShopList}/>
           </Switch>
         </div>
       </BrowserRouter>
@@ -24,3 +25,8 @@ class App extends Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'))
+/*
+
+
+<Route exact path='/:id' component={SingleProject} />
+*/

@@ -21,8 +21,8 @@ class ProjectsList extends Component {
 
   render () {
     const { projects } = this.state
-
-    return (
+    console.log(this.state)
+      return (
       <div className='container py-4'>
         <div className='row justify-content-center'>
           <div className='col-md-8'>
