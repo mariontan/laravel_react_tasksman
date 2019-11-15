@@ -29,7 +29,7 @@ class ShopList extends React.Component{
 	            <div className='card'>
 	              <div className='card-header'>All items</div>
 	              <div className='card-body'>
-	                <Link className='btn btn-primary btn-sm mb-3' to='/create'>
+	                <Link className='btn btn-primary btn-sm mb-3' to='/shoplistcreate'>
 	                  Create new item
 	                </Link>
 	                <ul className='list-group list-group-flush'>

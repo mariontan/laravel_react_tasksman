@@ -15,7 +15,22 @@ class ShopController extends Controller
 
     	return $shopList->toJson();
     }
-    
+	
+	/*public function store(){
+		$validatedData=$request=>validate([
+			'itemname'=> 'required',
+			'description' => 'required',
+			'qunatity' => '[required','min:1']
+		]);
+
+		$shopList = ShoppingList::create([
+			'itemname'=>$validatedData['itemname'],
+			'description'=>$validatedData['description'],
+			'qunatity'=>$validatedData['qunatity']
+		]);
+
+		return response()->json('Item stored');
+	}*/    
 
     
 }
