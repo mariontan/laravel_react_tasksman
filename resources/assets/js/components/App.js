@@ -7,6 +7,7 @@ import ProjectsList from './ProjectsList'
 import SingleProject from './SingleProject'
 import ShopList from './ShopList'
 import NewItem from './NewItem'
+import SingleItem from './SingleItem'
 
 class App extends Component {
   render () {
@@ -19,6 +20,7 @@ class App extends Component {
             <Route path='/shoplistcreate' component={NewItem}/>
             <Route path='/create' component={NewProject} />
             <Route path='/project/:id' exact component={SingleProject} />
+            <Route path='/shopitem/:id' component={SingleItem}/>
         </div>
       </BrowserRouter>
     )

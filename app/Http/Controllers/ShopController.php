@@ -20,14 +20,14 @@ class ShopController extends Controller
 		$validatedData = $request->validate([
 			'itemname' => 'required',
 			'description' => 'required',
-			'quantity' => 'required'
+			'quantity' => ['required','min:1']
 		]);
 
 		$shopList = ShoppingList::create([
 			'itemname' => $validatedData['itemname'],
 			'description' => $validatedData['description'],
 			'quantity' => $validatedData['quantity'],
-			'is_bought'=>0
+			'is_bought'=> 0
 		]);
 
 		return response()->json('Item stored');

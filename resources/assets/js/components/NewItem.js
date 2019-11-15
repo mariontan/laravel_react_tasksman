@@ -37,7 +37,7 @@ class NewItem extends React.Component{
 		}
 		console.log(item);
 		axios.post('/api/shoppingList', item).then(response=>{
-			history.push('/')
+			history.push('/shopList')
 		}).catch(error => {
 	        console.log(error)
 		})

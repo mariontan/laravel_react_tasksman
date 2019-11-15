@@ -36,7 +36,7 @@ class ShopList extends React.Component{
 	                  {shopList.map(item => (
 	                    <Link
 	                      className='list-group-item list-group-item-action d-flex justify-content-between align-items-center'
-	                      to={`/${item.id}`}
+	                      to={`/shopitem/${item.id}`}
 	                      key={item.id}
 	                    >
 	                      {item.itemname}
