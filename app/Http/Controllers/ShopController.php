@@ -33,6 +33,10 @@ class ShopController extends Controller
 		return response()->json('Item stored');
 	}    
 
+	public function show($id){
+		$item =  ShoppingList::find($id);
+		return $item->toJson();
+	}
     
 }
 

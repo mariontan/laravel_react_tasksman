@@ -21,7 +21,7 @@ class ShopList extends React.Component{
 
     render () {
 		const { shopList } = this.state
-		console.log(this.state)
+		//console.log(this.state)
 	    return (
 	      <div className='container py-4'>
 	        <div className='row justify-content-center'>

@@ -60522,8 +60522,8 @@ var ShopList = function (_React$Component) {
 		key: 'render',
 		value: function render() {
 			var shopList = this.state.shopList;
+			//console.log(this.state)
 
-			console.log(this.state);
 			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				'div',
 				{ className: 'container py-4' },
@@ -60775,6 +60775,8 @@ var NewItem = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -60787,19 +60789,57 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SingleItem = function (_React$Component) {
 	_inherits(SingleItem, _React$Component);
 
-	function SingleItem() {
+	function SingleItem(props) {
 		_classCallCheck(this, SingleItem);
 
-		return _possibleConstructorReturn(this, (SingleItem.__proto__ || Object.getPrototypeOf(SingleItem)).apply(this, arguments));
+		var _this = _possibleConstructorReturn(this, (SingleItem.__proto__ || Object.getPrototypeOf(SingleItem)).call(this, props));
+
+		_this.state = {
+			itemname: '',
+			description: '',
+			quantity: ''
+		};
+
+		_this.handleUpdate = _this.handleUpdate.bind(_this);
+		_this.handleFieldChange = _this.handleUpdate.bind(_this);
+		return _this;
 	}
 
 	_createClass(SingleItem, [{
+		key: 'componentDidMount',
+		value: function componentDidMount(props) {
+			var _this2 = this;
+
+			//console.log(this.props)
+			var id = this.props.match.params.id;
+			__WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/shoppingList/' + id).then(function (response) {
+				//console.log(response.data)
+				_this2.setState({
+					itemname: response.data.itemname,
+					description: response.data.description,
+					quantity: response.data.quantity
+				});
+				//console.log(this.state)
+			});
+		}
+	}, {
+		key: 'handleFieldChange',
+		value: function handleFieldChange(event) {
+			this.setState(_defineProperty({}, event.target.name, event.target.value));
+		}
+	}, {
+		key: 'handleUpdate',
+		value: function handleUpdate(event) {
+			event.prevetDefault();
+		}
+	}, {
 		key: 'render',
 		value: function render() {
+			console.log(this.state);
 			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				'div',
 				null,
-				'Edit Item'
+				'enter item'
 			);
 		}
 	}]);
