@@ -23,3 +23,4 @@ Route::put('tasks/{task}', 'TaskController@markAsCompleted');
 Route::get('shoppingList', 'ShopController@index');
 Route::post('shoppingList', 'ShopController@store');
 Route::get('shoppingList/{id}', 'ShopController@show');
+Route::post('shoppingList/{id}', 'ShopController@update');

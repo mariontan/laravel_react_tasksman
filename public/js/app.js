@@ -60801,7 +60801,7 @@ var SingleItem = function (_React$Component) {
 		};
 
 		_this.handleUpdate = _this.handleUpdate.bind(_this);
-		_this.handleFieldChange = _this.handleUpdate.bind(_this);
+		_this.handleFieldChange = _this.handleFieldChange.bind(_this);
 		return _this;
 	}
 
@@ -60815,6 +60815,7 @@ var SingleItem = function (_React$Component) {
 			__WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/shoppingList/' + id).then(function (response) {
 				//console.log(response.data)
 				_this2.setState({
+					id: response.data.id,
 					itemname: response.data.itemname,
 					description: response.data.description,
 					quantity: response.data.quantity
@@ -60826,20 +60827,112 @@ var SingleItem = function (_React$Component) {
 		key: 'handleFieldChange',
 		value: function handleFieldChange(event) {
 			this.setState(_defineProperty({}, event.target.name, event.target.value));
+			console.log(event.target.name);
+			console.log(event.target.value);
 		}
 	}, {
 		key: 'handleUpdate',
 		value: function handleUpdate(event) {
-			event.prevetDefault();
+			event.preventDefault();
+
+			var history = this.props.history;
+
+
+			var item = {
+				itemname: this.state.itemname,
+				description: this.state.description,
+				quantity: this.state.quantity
+			};
+			console.log(this.state.id);
+			__WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/shoppingList/' + this.state.id, item).then(function () {
+				history.push('/shopList');
+			}).catch(function (error) {
+				console.log(error);
+			});
 		}
 	}, {
 		key: 'render',
 		value: function render() {
-			console.log(this.state);
+			//console.log(this.state);
 			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 				'div',
-				null,
-				'enter item'
+				{ className: 'container py-4' },
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'div',
+					{ className: 'row justify-content-center' },
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: 'col-md-6' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'div',
+							{ className: 'card' },
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'div',
+								{ className: 'card-header' },
+								'Create new project'
+							),
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								'div',
+								{ className: 'card-body' },
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'form',
+									{ onSubmit: this.handleUpdate },
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'div',
+										{ className: 'form-group' },
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'label',
+											{ htmlFor: 'itemname' },
+											'Item'
+										),
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', {
+											id: 'itemname',
+											name: 'itemname',
+											value: this.state.itemname,
+											onChange: this.handleFieldChange
+										})
+									),
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'div',
+										{ className: 'form-group' },
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'label',
+											{ htmlFor: 'description' },
+											'Item description'
+										),
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', {
+											id: 'description',
+											name: 'description',
+											rows: '10',
+											value: this.state.description,
+											onChange: this.handleFieldChange
+										})
+									),
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'div',
+										{ className: 'form-group' },
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+											'label',
+											{ htmlFor: 'quantity' },
+											'quantity'
+										),
+										__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', {
+											id: 'quantity',
+											name: 'quantity',
+											value: this.state.quantity,
+											onChange: this.handleFieldChange
+										})
+									),
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'button',
+										{ className: 'btn btn-primary' },
+										'Update'
+									)
+								)
+							)
+						)
+					)
+				)
 			);
 		}
 	}]);

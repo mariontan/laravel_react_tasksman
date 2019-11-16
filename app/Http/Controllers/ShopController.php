@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ShoppingList;
 use App\Project;
 use Illuminate\Http\Request;
+use DB;
 
 class ShopController extends Controller
 {
@@ -36,6 +37,31 @@ class ShopController extends Controller
 	public function show($id){
 		$item =  ShoppingList::find($id);
 		return $item->toJson();
+	}
+
+	public function update(Request $request,$id){
+		
+		// DB::table('shopping_lists')
+  //           ->where('id', $id)
+  //           ->update(['itemname' => request('itemname'),
+  //   				  'description' => request('description'),
+  //   				  'quantity' => request('quantity'),
+  //   				  'is_bought' => 0	
+  //   				]);
+		// $validatedData = $request->validate([
+		// 	'itemname' => 'required',
+		// 	'description' => 'required',
+		// 	'quantity' => ['required','min:1']
+		// ]);
+
+		$item = ShoppingList::find($id);
+		$item -> itemname = request('itemname');
+		$item -> description = request('description');
+		$item -> quantity = request('quantity');
+		$item -> is_bought = 0;
+		$item -> save();
+
+		return response()->json($item);
 	}
     
 }
