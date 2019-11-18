@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-
+import {Button, List} from 'antd'
 class ShopList extends React.Component{
 	constructor(){
 		super()
@@ -23,6 +23,7 @@ class ShopList extends React.Component{
 	onDelete(id){
 		// console.log('delete')
 		//console.log(id)
+		const {history} = this.props;
 		axios.delete(`/api/shoppingList/${id}`).then(()=>{
 			console.log(`deleted`);
 			history.push('/shopList')
@@ -40,12 +41,13 @@ class ShopList extends React.Component{
 	        <div className='row justify-content-center'>
 	          <div className='col-md-8'>
 	            <div className='card'>
-	              <div className='card-header'>All items</div>
 	              <div className='card-body'>
 	                <Link className='btn btn-primary btn-sm mb-3' to='/shoplistcreate'>
 	                  Create new item
 	                </Link>
-	                <ul className='list-group list-group-flush'>
+	                <List
+	                	 header = {<div> Shopping List</div>}
+	                	bordered>
 	                  {shopList.map(item => (
 	                  	<div>
 		                    <Link
@@ -56,12 +58,11 @@ class ShopList extends React.Component{
 		                      <span className='badge badge-primary badge-pill'>
 		                        {item.quantity}
 		                      </span>
-		                      
 		                    </Link>
-		                    <button onClick={()=>this.onDelete(item.id)}>Delete</button>
+		                    <Button type='danger' onClick={()=>this.onDelete(item.id)}>Delete</Button>
 	                    </div>
 	                  ))}
-	                </ul>
+	                </List>
 	              </div>
 	            </div>
 	          </div>

@@ -1,5 +1,8 @@
-import React from 'react'
-import axios from 'axios'
+import React from 'react';
+import axios from 'axios';
+import {Input, Button} from 'antd';
+
+import 'antd/dist/antd.css';
 
 class SingleItem extends React.Component{
 	constructor(props){
@@ -19,6 +22,7 @@ class SingleItem extends React.Component{
 	componentDidMount(props){
 		//console.log(this.props)
 		const id = this.props.match.params.id
+		console.log(id);
 		axios.get(`/api/shoppingList/${id}`).then(response=>{
 			//console.log(response.data)
 			this.setState({
@@ -92,7 +96,7 @@ class SingleItem extends React.Component{
 
 	                  <div className='form-group'>
 	                    <label htmlFor='itemname'>Item</label>
-	                    <input
+	                    <Input
 	                      id='itemname'
 	                      name='itemname'
 	                      value={this.state.itemname}
@@ -103,10 +107,11 @@ class SingleItem extends React.Component{
 
 	                  <div className='form-group'>
 	                    <label htmlFor='description'>Item description</label>
-	                    <textarea
+	                    <Input
 	                      id='description'
 	                      name='description'
-	                      rows='10'
+						  type='textarea'
+						  sise='large'	                      
 	                      value={this.state.description}
 	                      onChange={this.handleFieldChange}
 	                    />
@@ -114,9 +119,10 @@ class SingleItem extends React.Component{
 
 	                  <div className='form-group'>
 	                    <label htmlFor='quantity'>quantity</label>
-	                    <textarea
+	                    <Input
 	                      id='quantity'
 	                      name='quantity'
+	                      type='textarea'
 	                      value={this.state.quantity}
 	                      onChange={this.handleFieldChange}
 	                    />
@@ -126,9 +132,7 @@ class SingleItem extends React.Component{
 	                  <button className='btn btn-primary'>Update</button>
 
 					</form>
-					<form onSubmit={this.onDelete}>
-						<button>Delete</button>	
-					</form>
+	
 	              </div>
 	            </div>
 	          </div>

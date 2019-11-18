@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import {Input, Button} from 'antd'
 
 class NewItem extends React.Component{
 	constructor(props){
@@ -75,7 +76,7 @@ class NewItem extends React.Component{
 
 	                  <div className='form-group'>
 	                    <label htmlFor='itemname'>Item</label>
-	                    <input
+	                    <Input
 	                      id='itemname'
 	                      name='itemname'
 	                      value={this.state.itemname}
@@ -86,7 +87,7 @@ class NewItem extends React.Component{
 
 	                  <div className='form-group'>
 	                    <label htmlFor='description'>Item description</label>
-	                    <textarea
+	                    <Input
 	                      id='description'
 	                      name='description'
 	                      rows='10'
@@ -97,7 +98,7 @@ class NewItem extends React.Component{
 
 	                  <div className='form-group'>
 	                    <label htmlFor='quantity'>quantity</label>
-	                    <textarea
+	                    <Input
 	                      id='quantity'
 	                      name='quantity'
 	                      value={this.state.quantity}
