@@ -13,6 +13,7 @@ class SingleItem extends React.Component{
 
 		this.handleUpdate=this.handleUpdate.bind(this);
 		this.handleFieldChange = this.handleFieldChange.bind(this);
+		this.onDelete = this.onDelete.bind(this);
 	}
 	
 	componentDidMount(props){
@@ -55,7 +56,27 @@ class SingleItem extends React.Component{
 		 	console.log(error)
 		 })
 
+	} 
+
+	// onDelete = (values)=>{
+	// 	axios.delete(`/api/shoppingList/${this.state.id}`).then(()=>{
+	// 		console.log(`deleted`);
+	// 	}).catch(error=>{
+	// 		console.log(error);
+	// 	});
+	// }
+	onDelete(){
+		// console.log('delete')
+		// console.log(this.state.id)
+		axios.delete(`/api/shoppingList/${this.state.id}`).then(()=>{
+			console.log(`deleted`);
+			history.push('/shopList')
+		}).catch(error=>{
+			console.log(error);
+			console.log(this.state.id);
+		});
 	}
+
 	render(){
 		//console.log(this.state);
 		return(
@@ -103,8 +124,11 @@ class SingleItem extends React.Component{
 
 
 	                  <button className='btn btn-primary'>Update</button>
-					</form>
 
+					</form>
+					<form onSubmit={this.onDelete}>
+						<button>Delete</button>	
+					</form>
 	              </div>
 	            </div>
 	          </div>

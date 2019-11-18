@@ -9,6 +9,7 @@ class ShopList extends React.Component{
 		this.state={
 			shopList: []
 		}
+		this.onDelete=this.onDelete.bind(this);
 	}
 
 	componentDidMount(){
@@ -17,6 +18,18 @@ class ShopList extends React.Component{
 				shopList: response.data
 			})
 		})
+	}
+
+	onDelete(id){
+		// console.log('delete')
+		//console.log(id)
+		axios.delete(`/api/shoppingList/${id}`).then(()=>{
+			console.log(`deleted`);
+			history.push('/shopList')
+		}).catch(error=>{
+			console.log(error);
+			console.log(this.state.id);
+		});
 	}
 
     render () {
@@ -43,7 +56,9 @@ class ShopList extends React.Component{
 	                      <span className='badge badge-primary badge-pill'>
 	                        {item.quantity}
 	                      </span>
+	                      <button onClick={()=>this.onDelete(item.id)}>Delete</button>
 	                    </Link>
+
 	                  ))}
 	                </ul>
 	              </div>

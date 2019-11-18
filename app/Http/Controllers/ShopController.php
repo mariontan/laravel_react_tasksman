@@ -63,6 +63,15 @@ class ShopController extends Controller
 
 		return response()->json($item);
 	}
+
+	public function destroy($id){
+		//$item=Project::delete($id);
+		 DB::delete('delete from shopping_lists where id = ?',[$id]);
+		// $this->authorize('delete', $project);
+  //       $project->delete();
+
+		return response()->json('deleted');
+	}
     
 }
 

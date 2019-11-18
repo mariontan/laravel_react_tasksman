@@ -37777,7 +37777,7 @@ var App = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/shoplistcreate', component: __WEBPACK_IMPORTED_MODULE_8__NewItem__["a" /* default */] }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/create', component: __WEBPACK_IMPORTED_MODULE_4__NewProject__["a" /* default */] }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/project/:id', exact: true, component: __WEBPACK_IMPORTED_MODULE_6__SingleProject__["a" /* default */] }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/shopitem/:id', component: __WEBPACK_IMPORTED_MODULE_9__SingleItem__["a" /* default */] })
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["c" /* Route */], { path: '/shopitem/:id', exact: true, component: __WEBPACK_IMPORTED_MODULE_9__SingleItem__["a" /* default */] })
         )
       );
     }
@@ -60504,6 +60504,7 @@ var ShopList = function (_React$Component) {
 		_this.state = {
 			shopList: []
 		};
+		_this.onDelete = _this.onDelete.bind(_this);
 		return _this;
 	}
 
@@ -60519,8 +60520,25 @@ var ShopList = function (_React$Component) {
 			});
 		}
 	}, {
+		key: 'onDelete',
+		value: function onDelete(id) {
+			var _this3 = this;
+
+			// console.log('delete')
+			//console.log(id)
+			__WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/shoppingList/' + id).then(function () {
+				console.log('deleted');
+				history.push('/shopList');
+			}).catch(function (error) {
+				console.log(error);
+				console.log(_this3.state.id);
+			});
+		}
+	}, {
 		key: 'render',
 		value: function render() {
+			var _this4 = this;
+
 			var shopList = this.state.shopList;
 			//console.log(this.state)
 
@@ -60565,6 +60583,13 @@ var ShopList = function (_React$Component) {
 												'span',
 												{ className: 'badge badge-primary badge-pill' },
 												item.quantity
+											),
+											__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+												'button',
+												{ onClick: function onClick() {
+														return _this4.onDelete(item.id);
+													} },
+												'Delete'
 											)
 										);
 									})
@@ -60802,6 +60827,7 @@ var SingleItem = function (_React$Component) {
 
 		_this.handleUpdate = _this.handleUpdate.bind(_this);
 		_this.handleFieldChange = _this.handleFieldChange.bind(_this);
+		_this.onDelete = _this.onDelete.bind(_this);
 		return _this;
 	}
 
@@ -60848,6 +60874,30 @@ var SingleItem = function (_React$Component) {
 				history.push('/shopList');
 			}).catch(function (error) {
 				console.log(error);
+			});
+		}
+
+		// onDelete = (values)=>{
+		// 	axios.delete(`/api/shoppingList/${this.state.id}`).then(()=>{
+		// 		console.log(`deleted`);
+		// 	}).catch(error=>{
+		// 		console.log(error);
+		// 	});
+		// }
+
+	}, {
+		key: 'onDelete',
+		value: function onDelete() {
+			var _this3 = this;
+
+			// console.log('delete')
+			// console.log(this.state.id)
+			__WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/shoppingList/' + this.state.id).then(function () {
+				console.log('deleted');
+				history.push('/shopList');
+			}).catch(function (error) {
+				console.log(error);
+				console.log(_this3.state.id);
 			});
 		}
 	}, {
@@ -60927,6 +60977,15 @@ var SingleItem = function (_React$Component) {
 										'button',
 										{ className: 'btn btn-primary' },
 										'Update'
+									)
+								),
+								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+									'form',
+									{ onSubmit: this.onDelete },
+									__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+										'button',
+										null,
+										'Delete'
 									)
 								)
 							)

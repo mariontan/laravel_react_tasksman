@@ -20,7 +20,7 @@ class App extends Component {
             <Route path='/shoplistcreate' component={NewItem}/>
             <Route path='/create' component={NewProject} />
             <Route path='/project/:id' exact component={SingleProject} />
-            <Route path='/shopitem/:id' component={SingleItem}/>
+            <Route path='/shopitem/:id' exact component={SingleItem}/>
         </div>
       </BrowserRouter>
     )
