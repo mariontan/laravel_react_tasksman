@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import {Button, List, Card} from 'antd'
+import {Button, List, Card, Table} from 'antd'
 class ShopList extends React.Component{
 	constructor(){
 		super()
@@ -33,6 +33,42 @@ class ShopList extends React.Component{
 		});
 	}
 
+	
+    render () {
+		const { shopList } = this.state
+
+		console.log(shopList)
+	    
+	    const columns=[{
+			title: 'Item',
+			dataIndex: 'itemname',
+			key: 'itemname'
+		},{
+			title: 'Description',
+			dataIndex: 'description',
+			key: 'Description'
+		},{
+			title:'Quantity',
+			dataIndex: 'quantity',
+			key: 'quantity'
+		}]
+
+	    return (
+	    	<div>
+	            <Link className='btn btn-primary btn-sm mb-3' to='/shoplistcreate'>
+	              Create new item
+	            </Link>
+
+		    	<Table dataSource={shopList} columns={columns}/>
+	    	</div>
+    );
+      }
+}
+
+export default ShopList;
+
+
+/*
     render () {
 		const { shopList } = this.state
 		//console.log(this.state)
@@ -68,6 +104,6 @@ class ShopList extends React.Component{
 	      </div>
     );
       }
-}
 
-export default ShopList;
+
+*/

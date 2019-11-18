@@ -105,7 +105,6 @@ class SingleItem extends React.Component{
 	                    />
 	                  </div>
 
-
 	                  <div className='form-group'>
 	                    <label htmlFor='description'>Item description</label>
 	                    <TextArea
