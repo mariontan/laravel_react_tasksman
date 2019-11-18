@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import {Button, List} from 'antd'
+import {Button, List, Card} from 'antd'
 class ShopList extends React.Component{
 	constructor(){
 		super()
@@ -37,11 +37,12 @@ class ShopList extends React.Component{
 		const { shopList } = this.state
 		//console.log(this.state)
 	    return (
-	      <div className='container py-4'>
-	        <div className='row justify-content-center'>
-	          <div className='col-md-8'>
-	            <div className='card'>
-	              <div className='card-body'>
+	      <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+	      	<Card 
+	      		bordered
+	      		title='Welcome to Shopping List'
+	      		style={{width: 500}}
+      		>
 	                <Link className='btn btn-primary btn-sm mb-3' to='/shoplistcreate'>
 	                  Create new item
 	                </Link>
@@ -63,10 +64,7 @@ class ShopList extends React.Component{
 	                    </div>
 	                  ))}
 	                </List>
-	              </div>
-	            </div>
-	          </div>
-	        </div>
+            </Card>
 	      </div>
     );
       }
