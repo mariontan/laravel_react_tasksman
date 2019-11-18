@@ -62,6 +62,7 @@ class ShopList extends React.Component{
 			render:(text, record)=>(
 				<span>
 					 <Button onClick={()=>this.onDelete(record.id)}>Delete</Button>
+					 <Link to={`/shopitem/${record.id}`}>Update</Link>
 				</span>
 			)
 		}]
