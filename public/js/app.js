@@ -60572,17 +60572,21 @@ var ShopList = function (_React$Component) {
 									{ className: 'list-group list-group-flush' },
 									shopList.map(function (item) {
 										return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-											__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */],
-											{
-												className: 'list-group-item list-group-item-action d-flex justify-content-between align-items-center',
-												to: '/shopitem/' + item.id,
-												key: item.id
-											},
-											item.itemname,
+											'div',
+											null,
 											__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-												'span',
-												{ className: 'badge badge-primary badge-pill' },
-												item.quantity
+												__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["b" /* Link */],
+												{
+													className: 'list-group-item list-group-item-action d-flex justify-content-between align-items-center',
+													to: '/shopitem/' + item.id,
+													key: item.id
+												},
+												item.itemname,
+												__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+													'span',
+													{ className: 'badge badge-primary badge-pill' },
+													item.quantity
+												)
 											),
 											__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 												'button',

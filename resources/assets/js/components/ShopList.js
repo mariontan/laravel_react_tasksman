@@ -47,18 +47,19 @@ class ShopList extends React.Component{
 	                </Link>
 	                <ul className='list-group list-group-flush'>
 	                  {shopList.map(item => (
-	                    <Link
-	                      className='list-group-item list-group-item-action d-flex justify-content-between align-items-center'
-	                      to={`/shopitem/${item.id}`}
-	                      key={item.id}
-	                    >
-	                      {item.itemname}
-	                      <span className='badge badge-primary badge-pill'>
-	                        {item.quantity}
-	                      </span>
-	                      <button onClick={()=>this.onDelete(item.id)}>Delete</button>
-	                    </Link>
-
+	                  	<div>
+		                    <Link
+		                      className='list-group-item list-group-item-action d-flex justify-content-between align-items-center'
+		                      to={`/shopitem/${item.id}`}
+		                      key={item.id}>
+		                      {item.itemname}
+		                      <span className='badge badge-primary badge-pill'>
+		                        {item.quantity}
+		                      </span>
+		                      
+		                    </Link>
+		                    <button onClick={()=>this.onDelete(item.id)}>Delete</button>
+	                    </div>
 	                  ))}
 	                </ul>
 	              </div>
