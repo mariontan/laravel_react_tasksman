@@ -26,7 +26,11 @@ class ShopList extends React.Component{
 		const {history} = this.props;
 		axios.delete(`/api/shoppingList/${id}`).then(()=>{
 			console.log(`deleted`);
-			history.push('/shopList')
+			axios.get('/api/shoppingList').then(response=>{
+			this.setState({
+				shopList: response.data
+			})
+		})
 		}).catch(error=>{
 			console.log(error);
 			console.log(this.state.id);
