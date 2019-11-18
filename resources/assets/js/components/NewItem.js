@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import {Input, Button} from 'antd'
+import {Input, Button, Card} from 'antd'
 
 class NewItem extends React.Component{
 	constructor(props){
@@ -64,10 +64,12 @@ class NewItem extends React.Component{
 
 	render(){
 		return(
-	      <div className='container py-4'>
-	        <div className='row justify-content-center'>
-	          <div className='col-md-6'>
-	            <div className='card'>
+	     <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+	        <Card 
+	      		bordered
+	      		title='Edit'
+	      		style={{width: 500}}
+      		>
 	              <div className='card-header'>Create new project</div>
 
 	              <div className='card-body'>
@@ -111,9 +113,7 @@ class NewItem extends React.Component{
 					</form>
 
 	              </div>
-	            </div>
-	          </div>
-	        </div>
+	        </Card>
 		  </div>
 		);		
 	}
