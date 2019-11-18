@@ -63,6 +63,7 @@ class NewItem extends React.Component{
 
 
 	render(){
+		const{TextArea} = Input;
 		return(
 	     <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
 	        <Card 
@@ -89,10 +90,10 @@ class NewItem extends React.Component{
 
 	                  <div className='form-group'>
 	                    <label htmlFor='description'>Item description</label>
-	                    <Input
+	                    <TextArea
 	                      id='description'
 	                      name='description'
-	                      rows='10'
+	                      rows={4}
 	                      value={this.state.description}
 	                      onChange={this.handleFieldChange}
 	                    />

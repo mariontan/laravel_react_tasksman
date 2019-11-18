@@ -83,6 +83,7 @@ class SingleItem extends React.Component{
 
 	render(){
 		//console.log(this.state);
+		const{TextArea} = Input;
 		return(
 	      <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
 	        <Card 
@@ -107,11 +108,11 @@ class SingleItem extends React.Component{
 
 	                  <div className='form-group'>
 	                    <label htmlFor='description'>Item description</label>
-	                    <Input
+	                    <TextArea
 	                      id='description'
 	                      name='description'
 						  type='textarea'
-						  sise='large'	                      
+						  rows={4}	                      
 	                      value={this.state.description}
 	                      onChange={this.handleFieldChange}
 	                    />
