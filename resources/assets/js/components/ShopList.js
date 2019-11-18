@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import {Button, List, Card, Table} from 'antd'
+import {Button, List, Card, Table, Icon, Divider} from 'antd'
 class ShopList extends React.Component{
 	constructor(){
 		super()
@@ -40,6 +40,11 @@ class ShopList extends React.Component{
 		console.log(shopList)
 	    
 	    const columns=[{
+	    	title: 'ID',
+	    	dataIndex: 'id',
+	    	key: 'id',
+	    	render: text =><a href='#'>{text}</a>
+	    },{
 			title: 'Item',
 			dataIndex: 'itemname',
 			key: 'itemname'
@@ -51,6 +56,14 @@ class ShopList extends React.Component{
 			title:'Quantity',
 			dataIndex: 'quantity',
 			key: 'quantity'
+		},{
+			title:'Action',
+			key: 'action',
+			render:(text, record)=>(
+				<span>
+					 <Button onClick={()=>this.onDelete(record.id)}>Delete</Button>
+				</span>
+			)
 		}]
 
 	    return (
