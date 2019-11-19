@@ -22,14 +22,13 @@ class ShopList extends React.Component{
 		// 		shopList: response.data
 		// 	})
 		// })
-		console.log(this.props);
+		//console.log(this.props.read());
 	}
 
     render () {
-    	console.log('hello world')
 		//const { shopList } = this.state
 
-		//console.log(shopList)
+		console.log(this.props.ShopList)
 		return(
 			<div>render list with redux</div>
 		);
@@ -38,10 +37,10 @@ class ShopList extends React.Component{
       }
 }
 
-// const mapStateToProps=(state)=>{
-// 	return{shoplist: Object.values(state.shoplist)}
-//}
+const mapStateToProps=(state)=>{
+	return{ShopList: Object.values(state.ShopList)}//retruns an array of objects
+}
 
-export default connect(null,{read})(ShopList);
+export default connect(mapStateToProps,{read})(ShopList);
 
 //export default ShopList;
