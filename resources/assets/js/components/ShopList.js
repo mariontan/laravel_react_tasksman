@@ -12,13 +12,28 @@ class ShopList extends React.Component{
 		this.state={
 			shopList: []
 		}
-		//this.onDelete=this.onDelete.bind(this);
+		this.onDelete=this.onDelete.bind(this);
 	}
 
 	componentDidMount(){
 		this.props.read();
 	}
 
+	onDelete(id){
+		const {history} = this.props;
+		axios.delete(`/api/shoppingList/${id}`).then(()=>{
+			console.log(`deleted`);
+			axios.get('/api/shoppingList').then(response=>{
+			this.setState({
+				shopList: response.data
+			})
+		})
+		}).catch(error=>{
+			console.log(error);
+			console.log(this.state.id);
+		});
+	}
+	
     render () {
 		const  ShopList  = this.props.ShopList
 

@@ -34,16 +34,6 @@ class SingleItem extends React.Component{
 			description: response.description,
 			quantity: response.quantity
 		})		
-		// axios.get(`/api/shoppingList/${id}`).then(response=>{
-		// 	//console.log(response.data)
-		// 	this.setState({
-		// 		id: response.data.id,
-		// 		itemname: response.data.itemname,
-		// 		description: response.data.description,
-		// 		quantity: response.data.quantity
-		// 	})
-		// 	//console.log(this.state)
-		// })
 	}
 
 	handleFieldChange(event){
@@ -66,21 +56,9 @@ class SingleItem extends React.Component{
 		}
 		console.log(this.state.id);
 		this.props.update(this.state.id, item)
-		 // axios.post(`/api/shoppingList/${this.state.id}`,item).then(()=>{
-		 // 	history.push('/shopList')
-		 // }).catch(error=>{
-		 // 	console.log(error)
-		 // })
 
 	} 
 
-	// onDelete = (values)=>{
-	// 	axios.delete(`/api/shoppingList/${this.state.id}`).then(()=>{
-	// 		console.log(`deleted`);
-	// 	}).catch(error=>{
-	// 		console.log(error);
-	// 	});
-	// }
 	onDelete(){
 		// console.log('delete')
 		// console.log(this.state.id)
@@ -155,9 +133,5 @@ class SingleItem extends React.Component{
 const mapStateToProps = (state,ownProps) =>{
 	return{ShopList: state.ShopList[ownProps.match.params.id]}
 }
-
-// const formWrapped = reduxForm({
-// 	form:SingleItem
-// })(SingleItem)
 
 export default connect(mapStateToProps,{update,read_item})(SingleItem);
