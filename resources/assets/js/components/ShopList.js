@@ -65,7 +65,7 @@ class ShopList extends React.Component{
 }
 
 const mapStateToProps=(state)=>{
-	return{ShopList: Object.values(state.ShopList)}//retruns an array of objects
+	return{ShopList: Object.values(state.ShopList)}//retruns an array of object values
 }
 
 export default connect(mapStateToProps,{read})(ShopList);
