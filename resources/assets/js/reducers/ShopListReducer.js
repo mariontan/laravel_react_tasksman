@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import {CREATE,
 		READ,
+		READ_ITEM,
 		UPDATE,
 		DELETE} from '../actions/types';
 
@@ -10,7 +11,10 @@ export default(state ={}, action) =>{
 			return{...state, [actions.payload.id]: action.payload};
 		case READ:
 			return{...state, ..._.mapKeys(action.payload, 'id')}
-			//return{...state}
+		case READ_ITEM:
+			return{...state, [actions.payload.id]: action.payload};
+		case UPDATE:
+			return{...state, [actions.payload.id]: action.payload};
 		default:
 			return state;
 

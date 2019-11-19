@@ -1,5 +1,6 @@
 import {CREATE,
 		READ,
+		READ_ITEM,
 		UPDATE,
 		DELETE} from './types';
 import history from '../history';
@@ -14,4 +15,12 @@ export const create = (formValues) => async (dispatch,getState)=>{
 export const read = () => async dispatch=>{
 	const response = await axios.get('/api/shoppingList');
 	dispatch({type: READ, payload: response.data});
+}
+export const read_item = (id) => async dispatch=>{
+	const response = await axios.get(`/api/shoppingList/${id}`)
+	dispatch({type: READ_ITEM, payload: response.data})
+}
+export const update = (id,formValues) => async dispatch=>{
+	const response = await axios.patch(`/api/shoppingList/${id}`,formValues);
+	dispatch({type: UPDATE, payload: response.data})
 }

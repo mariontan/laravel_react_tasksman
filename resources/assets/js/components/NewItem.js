@@ -17,7 +17,6 @@ class NewItem extends React.Component{
 			error:[]		
 		}
 		
-		this.onSubmit=this.onSubmit.bind(this);
 		this.renderInput=this.renderInput.bind(this);
 		this.handleFieldChange=this.handleFieldChange.bind(this)
 		this.handleCreateNewItem=this.handleCreateNewItem.bind(this)
@@ -64,15 +63,7 @@ class NewItem extends React.Component{
 		}
 		console.log(item);
 		this.props.create(item);
-		// axios.post('/api/shoppingList', item).then(response=>{
-		// 	history.push('/shopList')
-		// }).catch(error => {
-	 //        console.log(error)
-		// })
 
-	}
-	onSubmit(formValues){
-		this.props.create(formValues);
 	}
 
 	render(){

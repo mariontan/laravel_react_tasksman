@@ -1,8 +1,11 @@
 import React from 'react';
+import {connect} from 'react-redux'
+import {Field, reduxForm}  from 'redux-form'
 import axios from 'axios';
 import {Input, Button, Card} from 'antd';
-
 import 'antd/dist/antd.css';
+
+import {update,read_item} from '../actions'
 
 class SingleItem extends React.Component{
 	constructor(props){
@@ -23,16 +26,24 @@ class SingleItem extends React.Component{
 		//console.log(this.props)
 		const id = this.props.match.params.id
 		console.log(id);
-		axios.get(`/api/shoppingList/${id}`).then(response=>{
-			//console.log(response.data)
-			this.setState({
-				id: response.data.id,
-				itemname: response.data.itemname,
-				description: response.data.description,
-				quantity: response.data.quantity
-			})
-			//console.log(this.state)
-		})
+		this.props.read_item(id);
+		const response = this.props.ShopList
+		this.setState({
+			id: response.id,
+			itemname: response.itemname,
+			description: response.description,
+			quantity: response.quantity
+		})		
+		// axios.get(`/api/shoppingList/${id}`).then(response=>{
+		// 	//console.log(response.data)
+		// 	this.setState({
+		// 		id: response.data.id,
+		// 		itemname: response.data.itemname,
+		// 		description: response.data.description,
+		// 		quantity: response.data.quantity
+		// 	})
+		// 	//console.log(this.state)
+		// })
 	}
 
 	handleFieldChange(event){
@@ -140,4 +151,12 @@ class SingleItem extends React.Component{
 	}
 }
 
-export default SingleItem;
+const mapStateToProps = (state,ownProps) =>{
+	return{ShopList: state.ShopList[ownProps.match.params.id]}
+}
+
+// const formWrapped = reduxForm({
+// 	form:SingleItem
+// })(SingleItem)
+
+export default connect(mapStateToProps,{update,read_item})(SingleItem);
