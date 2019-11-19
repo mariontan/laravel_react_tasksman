@@ -17,21 +17,12 @@ class ShopList extends React.Component{
 
 	componentDidMount(){
 		this.props.read();
-		// axios.get('/api/shoppingList').then(response=>{
-		// 	this.setState({
-		// 		shopList: response.data
-		// 	})
-		// })
-		//console.log(this.props.read());
 	}
 
     render () {
 		const  ShopList  = this.props.ShopList
 
-		console.log(this.props.ShopList)
-		// return(
-		// 	<div>render list with redux</div>
-		// );
+		console.log(this.props)
 	    const columns=[{
 	    	title: 'ID',
 	    	dataIndex: 'id',
@@ -79,4 +70,3 @@ const mapStateToProps=(state)=>{
 
 export default connect(mapStateToProps,{read})(ShopList);
 
-//export default ShopList;
