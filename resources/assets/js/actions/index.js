@@ -21,6 +21,6 @@ export const read_item = (id) => async dispatch=>{
 	dispatch({type: READ_ITEM, payload: response.data})
 }
 export const update = (id,formValues) => async dispatch=>{
-	const response = await axios.patch(`/api/shoppingList/${id}`,formValues);
+	const response = await axios.post(`/api/shoppingList/${id}`,formValues);
 	dispatch({type: UPDATE, payload: response.data})
 }

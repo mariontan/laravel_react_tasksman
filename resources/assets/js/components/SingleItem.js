@@ -25,7 +25,7 @@ class SingleItem extends React.Component{
 	componentDidMount(props){
 		//console.log(this.props)
 		const id = this.props.match.params.id
-		console.log(id);
+//		console.log(id);
 		this.props.read_item(id);
 		const response = this.props.ShopList
 		this.setState({
@@ -65,11 +65,12 @@ class SingleItem extends React.Component{
 			quantity: this.state.quantity
 		}
 		console.log(this.state.id);
-		 axios.post(`/api/shoppingList/${this.state.id}`,item).then(()=>{
-		 	history.push('/shopList')
-		 }).catch(error=>{
-		 	console.log(error)
-		 })
+		this.props.update(this.state.id, item)
+		 // axios.post(`/api/shoppingList/${this.state.id}`,item).then(()=>{
+		 // 	history.push('/shopList')
+		 // }).catch(error=>{
+		 // 	console.log(error)
+		 // })
 
 	} 
 
