@@ -26,13 +26,49 @@ class ShopList extends React.Component{
 	}
 
     render () {
-		//const { shopList } = this.state
+		const  ShopList  = this.props.ShopList
 
 		console.log(this.props.ShopList)
-		return(
-			<div>render list with redux</div>
-		);
-	    
+		// return(
+		// 	<div>render list with redux</div>
+		// );
+	    const columns=[{
+	    	title: 'ID',
+	    	dataIndex: 'id',
+	    	key: 'id',
+	    	render: text =><a href='#'>{text}</a>
+	    },{
+			title: 'Item',
+			dataIndex: 'itemname',
+			key: 'itemname'
+		},{
+			title: 'Description',
+			dataIndex: 'description',
+			key: 'Description'
+		},{
+			title:'Quantity',
+			dataIndex: 'quantity',
+			key: 'quantity'
+		},{
+			title:'Action',
+			key: 'action',
+			render:(text, record)=>(
+				<span>
+					 <Button onClick={()=>this.onDelete(record.id)}>Delete</Button>
+					 <Link to={`/shopitem/${record.id}`}>Update</Link>
+				</span>
+			)
+		}]
+
+	    return (
+	    	<div>
+	            <Link className='btn btn-primary btn-sm mb-3' to='/shoplistcreate'>
+	              Create new item
+	            </Link>
+
+		    	<Table dataSource={ShopList} columns={columns}/>
+	    	</div>
+    );	    
 	    
       }
 }
