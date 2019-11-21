@@ -7,9 +7,9 @@ import history from '../history';
 import axios from 'axios';
 
 export const create = (formValues) => async (dispatch,getState)=>{
-	const response = await axios.post('api/shoppingList',formValues);
+	const response = await axios.post('api/shoppingList',formValues).then(()=>
+		history.push('/shopList'));
 	dispatch({type: CREATE, payload: response.data});
-	history.push('/shopList')
 };
 
 export const read = () => async dispatch=>{
@@ -21,7 +21,8 @@ export const read_item = (id) => async dispatch=>{
 	dispatch({type: READ_ITEM, payload: response.data})
 }
 export const update = (id,formValues) => async dispatch=>{
-	const response = await axios.post(`/api/shoppingList/${id}`,formValues);
+	const response = await axios.post(`/api/shoppingList/${id}`,formValues).then(()=>
+		history.push('/shopList'));
 	dispatch({type: UPDATE, payload: response.data})
 }
 
