@@ -8,7 +8,9 @@ import axios from 'axios';
 
 export const create = (formValues) => async (dispatch,getState)=>{
 	const response = await axios.post('api/shoppingList',formValues).then(()=>
-		history.push('/shopList'));
+		history.push('/shopList')).catch(error=>{
+			console.log(error);
+		});
 	dispatch({type: CREATE, payload: response.data});
 };
 

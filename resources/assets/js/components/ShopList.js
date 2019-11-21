@@ -68,14 +68,14 @@ class ShopList extends React.Component{
 				</span>
 			)
 		}]
-
+		// rowKey is set to id the primary key of the Table
 	    return (
 	    	<div>
 	            <Link className='btn btn-primary btn-sm mb-3' to='/shoplistcreate'>
 	              Create new item
 	            </Link>
-
-		    	<Table dataSource={ShopList} columns={columns}/>
+	            
+		    	<Table dataSource={ShopList} columns={columns} rowKey={ShopList=>ShopList.id}/>
 	    	</div>
     );	    
 	    
