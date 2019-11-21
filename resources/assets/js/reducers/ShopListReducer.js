@@ -15,6 +15,8 @@ export default(state ={}, action) =>{
 			return{...state, [actions.payload.id]: action.payload};
 		case UPDATE:
 			return{...state, [actions.payload.id]: action.payload};
+		case DELETE:
+			return _.omit(state, action.payload);
 		default:
 			return state;
 

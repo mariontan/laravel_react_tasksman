@@ -5,7 +5,7 @@ import component from 'react-redux'
 import axios from 'axios'
 import {Input, Button, Card} from 'antd'
 
-import {create} from '../actions'
+import {create} from '../actions/index'
 
 class NewItem extends React.Component{
 	constructor(props){
@@ -53,8 +53,6 @@ class NewItem extends React.Component{
 	}
 	handleCreateNewItem(event){
 		event.preventDefault();
-
-		const {history}=this.props;
 
 		const item = {
 			itemname:this.state.itemname,

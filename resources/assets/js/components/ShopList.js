@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {Button, List, Card, Table, Icon, Divider} from 'antd'
 import {connect} from 'react-redux';
-import {read} from '../actions'
+import {read,delete_item} from '../actions/index'
 
 class ShopList extends React.Component{
 	constructor(){
@@ -18,26 +18,29 @@ class ShopList extends React.Component{
 	componentDidMount(){
 		this.props.read();
 	}
-
+	
 	onDelete(id){
 		const {history} = this.props;
-		axios.delete(`/api/shoppingList/${id}`).then(()=>{
-			console.log(`deleted`);
-			axios.get('/api/shoppingList').then(response=>{
-			this.setState({
-				shopList: response.data
-			})
-		})
-		}).catch(error=>{
-			console.log(error);
-			console.log(this.state.id);
-		});
+		this.props.delete_item(id);
+		// axios.delete(`/api/shoppingList/${id}`).then(()=>{
+		// 	console.log(`deleted`);
+		// 	this.props.read()
+		// 	console.log(this.props)
+		// // 	axios.get('/api/shoppingList').then(response=>{
+		// // 	this.setState({
+		// // 		shopList: response.data
+		// // 	})
+		// // })
+		// }).catch(error=>{
+		// 	console.log(error);
+		// 	console.log(this.state.id);
+		// });
 	}
-	
+
     render () {
 		const  ShopList  = this.props.ShopList
 
-		console.log(this.props)
+		//console.log(this.props)
 	    const columns=[{
 	    	title: 'ID',
 	    	dataIndex: 'id',
@@ -83,5 +86,5 @@ const mapStateToProps=(state)=>{
 	return{ShopList: Object.values(state.ShopList)}//retruns an array of object values
 }
 
-export default connect(mapStateToProps,{read})(ShopList);
+export default connect(mapStateToProps,{read,delete_item})(ShopList);
 

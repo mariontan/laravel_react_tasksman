@@ -24,3 +24,9 @@ export const update = (id,formValues) => async dispatch=>{
 	const response = await axios.post(`/api/shoppingList/${id}`,formValues);
 	dispatch({type: UPDATE, payload: response.data})
 }
+
+export const delete_item=(id)=>async dispatch=>{
+	const response = await axios.delete(`/api/shoppingList/${id}`);
+	dispatch({type: DELETE, paload: id});
+}
+
